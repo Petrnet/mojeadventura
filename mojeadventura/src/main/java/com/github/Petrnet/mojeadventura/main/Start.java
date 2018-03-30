@@ -5,6 +5,7 @@ package com.github.Petrnet.mojeadventura.main;
 import com.github.Petrnet.mojeadventura.logika.*;
 import com.github.Petrnet.mojeadventura.uiText.TextoveRozhrani;
 
+
 /*******************************************************************************
  * Třída  Start je hlavní třídou projektu, který představuje jednoduchou textovou
  * adventuru určenou k dalším úpravám a rozšiřování.
@@ -19,20 +20,12 @@ public class Start
      *
      * @param args Parametry příkazového řádku
      */
-    public static void main(String[] args)
-    {
-        IHra hra = new Hra();
-        TextoveRozhrani ui = new TextoveRozhrani(hra);
-        
-        if (args.length > 0)
-        {
-            ui.hrajZeSouboru(args[0]);
-        }
-        else
-        {
-            ui.hraj();
-        }
-    }
-    
-    private Start() {}
-}
+	 public static void main(String[] args)
+	    {
+	        
+	        IHra hra = new Hra();
+	        TextoveRozhrani ui = new TextoveRozhrani(hra);
+	        ui.hraj();
+	    }
+	}
+

@@ -61,13 +61,6 @@ public class PrikazZabij implements IPrikaz
             return "Dinosaurus " + nazevDinosaura + " tady neni";
         }
         
-        if (batoh.obsahujePredmety(dinosaurus.getZabijeciPredmet()))
-        {
-           dinosaurus.getCoMa();
-           
-           return "nazevPredmetu";
-        }
-        
         if (aktLokace.getNazev().equals("breh") && batoh.nazvyPredmetu().contains("mec"))
         {
            aktLokace.odstranDinosaura(nazevDinosaura);
