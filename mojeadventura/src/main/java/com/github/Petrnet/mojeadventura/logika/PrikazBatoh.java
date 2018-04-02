@@ -1,5 +1,5 @@
 package com.github.Petrnet.mojeadventura.logika;
-
+import java.util.Observable;
 /**
  * Třída PrikazBatoh implementuje pro hru příkaz batoh, který vypíše seznam věcí v batohu.
  * 
@@ -9,7 +9,7 @@ package com.github.Petrnet.mojeadventura.logika;
  * @author     Petr Netolicky
  * @version    LS 2016/2017
  */
-public class PrikazBatoh implements IPrikaz {
+public class PrikazBatoh extends Observable implements IPrikaz{
 
     private static final String NAZEV = "batoh";
     private HerniPlan hPlan;
@@ -42,8 +42,10 @@ public class PrikazBatoh implements IPrikaz {
             return "Tento prikaz takhle nefunguje, napis pouze UkazBatoh";
         }
         
+        setChanged();
+        notifyObservers();
+        return hPlan.getBatoh().nazvyPredmetu() + "\n";
         
-        return hPlan.getBatoh().nazvyPredmetu() + "\n";  
     }
 
     /**
@@ -52,6 +54,8 @@ public class PrikazBatoh implements IPrikaz {
      *  @ return nazev prikazu
      */
     public String getNazev() {
+    	setChanged();
+        notifyObservers();
         return NAZEV;
     }
 }

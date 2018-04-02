@@ -17,6 +17,8 @@ public interface IHra
      */
     public String vratUvitani();
     
+    public void Hra();
+    
     /**
      * Vrátí závěrečnou zprávu pro hráče.
      *

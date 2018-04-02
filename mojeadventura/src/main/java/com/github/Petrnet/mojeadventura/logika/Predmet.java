@@ -2,7 +2,7 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package com.github.Petrnet.mojeadventura.logika;
 
-
+import java.util.Observable;
 
 /**
  * Třída Predmet představuje jednotlivé předměty (věci), které je možné
@@ -15,7 +15,7 @@ package com.github.Petrnet.mojeadventura.logika;
  * @author     Jan Riha, ...
  * @version    LS 2016/2017
  */
-public class Predmet
+public class Predmet extends Observable 
 {
     private String nazev;
     private String popis;
@@ -117,6 +117,8 @@ public class Predmet
     public void setOdemceny(boolean odemceny)
     {
         this.odemceny = odemceny;
+        setChanged();
+        notifyObservers();
     }
 
     @Override

@@ -1,4 +1,5 @@
 package com.github.Petrnet.mojeadventura.logika;
+import java.util.Observable;
 /**
  * Třída PrikazZabij implementuje pro hru příkaz zabij.
  * Tato třída je součástí jednoduché textové hry.
@@ -7,7 +8,7 @@ package com.github.Petrnet.mojeadventura.logika;
  * @version    LS 2016/2017
  */
 
-public class PrikazZabij implements IPrikaz
+public class PrikazZabij extends Observable implements IPrikaz
 {
     private static final String NAZEV = "zabij";
     private HerniPlan hPlan;
@@ -61,17 +62,13 @@ public class PrikazZabij implements IPrikaz
             return "Dinosaurus " + nazevDinosaura + " tady neni";
         }
         
-        if (batoh.obsahujePredmety(dinosaurus.getZabijeciPredmet()))
-        {
-           dinosaurus.getCoMa();
-           
-           return "nazevPredmetu";
-        }
         
         if (aktLokace.getNazev().equals("breh") && batoh.nazvyPredmetu().contains("mec"))
         {
            aktLokace.odstranDinosaura(nazevDinosaura);
            aktLokace.vlozPredmet(dodoMaso);
+           setChanged();
+           notifyObservers();
            return nazevDinosaura + ", byl zabit, nyni si muzes vzit jeho maso";
         }
         
@@ -79,6 +76,8 @@ public class PrikazZabij implements IPrikaz
         {
            aktLokace.odstranDinosaura(nazevDinosaura);
            aktLokace.vlozPredmet(triceratopsMaso);
+           setChanged();
+           notifyObservers();
            return nazevDinosaura + ", byl zabit, nyni si muzes vzit jeho maso";
         }
         
@@ -86,9 +85,13 @@ public class PrikazZabij implements IPrikaz
         {
            aktLokace.odstranDinosaura(nazevDinosaura);
            aktLokace.vlozPredmet(tRexVejce);
+           setChanged();
+           notifyObservers();
            return nazevDinosaura + ", byl zabit, nyni si muzes vzit tRexVejce";
         }
         hPlan.setProhra(true);
+        setChanged();
+        notifyObservers();
         return "Nezvladnes zabit " +  nazevDinosaura;
         
 }

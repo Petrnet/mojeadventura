@@ -1,5 +1,6 @@
 package com.github.Petrnet.mojeadventura.logika;
 
+import java.util.Observable;
 
 /**
  * Třída PrikazVezmi představuje příkaz pro sebrání předmětu z aktuální lokace
@@ -8,7 +9,7 @@ package com.github.Petrnet.mojeadventura.logika;
  * @author     Jan Riha, Petr Netolicky
  * @version    LS 2016/2017
  */
-public class PrikazVezmi implements IPrikaz
+public class PrikazVezmi extends Observable implements IPrikaz
 {
     private static final String NAZEV = "vezmi";
     private HerniPlan hPlan;
@@ -78,6 +79,8 @@ public class PrikazVezmi implements IPrikaz
         }
          predmet.setOdemceny(odemceny);
          batoh.vlozPredmet(predmet);
+         setChanged();
+         notifyObservers();
 
         return "Sebral(a) jsi predmet " + nazevPredmetu;
     }

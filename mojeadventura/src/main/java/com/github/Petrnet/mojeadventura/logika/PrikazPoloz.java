@@ -1,5 +1,7 @@
 package com.github.Petrnet.mojeadventura.logika;
 
+import java.util.Observable;
+
 /**
  * Třída PrikazPoloz představuje příkaz pro odebrání předmětu z batohu
  * a jeho vložení do aktuální lokace.
@@ -9,7 +11,7 @@ package com.github.Petrnet.mojeadventura.logika;
  */
 
 
-public class PrikazPoloz implements IPrikaz
+public class PrikazPoloz extends Observable implements IPrikaz
 {
     private static final String NAZEV = "poloz";
     private HerniPlan hPlan;
@@ -64,6 +66,8 @@ public class PrikazPoloz implements IPrikaz
          }
          Predmet predmet = batoh.vyhodPredmet(nazevPredmetu);
          aktLokace.vlozPredmet(predmet);
+         setChanged();
+         notifyObservers();
            
          return "Vyhodil si " + nazevPredmetu;
 

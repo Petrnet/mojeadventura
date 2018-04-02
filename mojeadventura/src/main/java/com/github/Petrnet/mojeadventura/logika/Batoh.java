@@ -2,6 +2,8 @@ package com.github.Petrnet.mojeadventura.logika;
 import java.util.*;
 
 
+
+
 /**
  * Třída Batoh představuje batoh do kterého se mohou ukládat přenositelné předměty
  * 
@@ -11,7 +13,7 @@ import java.util.*;
  * @version    LS 2016/2017
  */
 
-public class Batoh
+public class Batoh extends Observable
 {
 
 private Map<String,Predmet> seznamPredmetu;
@@ -96,6 +98,8 @@ public boolean jeVolno()
       if (jeVolno() && nejakyPredmet.isPrenositelny()){
       
       seznamPredmetu.put(nejakyPredmet.getNazev(), nejakyPredmet);
+      setChanged();
+      notifyObservers();
       return true;
   }
   else{
@@ -116,7 +120,8 @@ public Predmet vyhodPredmet(String nazev){
             vyhozenyPredmet = seznamPredmetu.get(nazev);
             seznamPredmetu.remove(nazev);
         }
-        
+        setChanged();
+        notifyObservers();
         return vyhozenyPredmet;  
     } 
       /**
@@ -139,7 +144,11 @@ public String nazvyPredmetu() {
         }
         return false;
  }
-    
+ public Collection<Predmet> getPredmetyBatoh() {
+		return Collections.unmodifiableCollection(seznamPredmetu.values());
+	}
+        
+  
 @Override
     public String toString()
     {
@@ -147,3 +156,4 @@ public String nazvyPredmetu() {
     }
 
 }
+       

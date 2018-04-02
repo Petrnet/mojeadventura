@@ -17,7 +17,7 @@ public class Hra implements IHra {
     private HerniPlan herniPlan;
     private boolean konecHry = false;
     private Dinosaurus dinosaurus;
-
+    
 
     /**
      * Vytváří hru a inicializuje místnosti (prostřednictvím třídy HerniPlan) a seznam platných příkazů.
@@ -36,6 +36,9 @@ public class Hra implements IHra {
         platnePrikazy.vlozPrikaz(new PrikazPoloz(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazBatoh(herniPlan));
     }
+    
+    
+    
 
     /**
      * Vrátí úvodní zprávu pro hráče.
@@ -131,6 +134,15 @@ public class Hra implements IHra {
      public HerniPlan getHerniPlan(){
         return herniPlan;
      }
+
+
+
+
+	@Override
+	public void Hra() {
+		// TODO Auto-generated method stub
+		
+	}
       
      
     

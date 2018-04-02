@@ -2,14 +2,18 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package com.github.Petrnet.mojeadventura.logika;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 import java.util.HashMap;
 import java.util.stream.Collectors;
+
+import com.github.Petrnet.mojeadventura.logika.Predmet;
 
 /**
  * Trida Lokace - popisuje jednotlivé lokace (místnosti) hry. Tato třída je
@@ -22,13 +26,15 @@ import java.util.stream.Collectors;
  * @author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Riha, Petr Netolicky
  * @version    LS 2016/2017
  */
-public class Lokace {
+public class Lokace extends Observable{
 
     private String nazev;
     private String popis;
     private Set<Lokace> vychody;   // obsahuje sousední lokace
     private Map<String, Predmet> predmety;
     private Map<String, Dinosaurus> dinosauri;
+    private double x;
+    private double y;
 
     /**
      * Vytvoření lokace se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -38,12 +44,14 @@ public class Lokace {
      * @param    popis Popis lokace
      * 
      */
-    public Lokace(String nazev, String popis) {
+    public Lokace(String nazev, String popis, double x, double y) {
         this.nazev = nazev;
         this.popis = popis;
         vychody = new HashSet<>();
         predmety = new HashMap<>();
         dinosauri = new HashMap<>();
+        this.x = x;
+        this.y = y;
     }
 
     /**
@@ -213,6 +221,8 @@ public class Lokace {
         return Collections.unmodifiableCollection(vychody);
     }
     
+ 
+    
     /**
      * Přidá předmět do lokace.
      * 
@@ -288,6 +298,39 @@ public class Lokace {
      */
     public Dinosaurus odstranDinosaura(String nazevDinosaura)
     {
+    	 setChanged();
+         notifyObservers();
         return dinosauri.remove(nazevDinosaura);
     }
+    
+    public Collection<Dinosaurus> getDinosaury() {
+    	return Collections.unmodifiableCollection(dinosauri.values());
+    }
+
+public Collection<Predmet> getPredmet() {
+	return Collections.unmodifiableCollection(predmety.values());
+}
+
+public double getX() {
+	return x;
+}
+
+public void setX(double x) {
+	this.x = x;
+}
+
+public double getY() {
+	return y;
+}
+
+public void setY(double y) {
+	this.y = y;
+}
+
+
+@Override
+public String toString() {
+	return getNazev();
+	
+}
 }

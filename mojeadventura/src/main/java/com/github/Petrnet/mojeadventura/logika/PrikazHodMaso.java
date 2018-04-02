@@ -1,4 +1,7 @@
 package com.github.Petrnet.mojeadventura.logika;
+
+import java.util.Observable;
+
 /**
  * Třída PrikazHodMaso představuje příkaz pro hozeni masa Dinosaurovi
  * a jeho odstraneni z inventare.
@@ -8,7 +11,7 @@ package com.github.Petrnet.mojeadventura.logika;
  * @author     Jan Riha, Petr Netolicky
  * @version    LS 2016/2017
  */
-public class PrikazHodMaso implements IPrikaz
+public class PrikazHodMaso extends Observable implements IPrikaz
 {
     private static final String NAZEV = "hodMaso";
     private HerniPlan hPlan;
@@ -70,7 +73,10 @@ public class PrikazHodMaso implements IPrikaz
              aktLokace.vlozPredmet(klic);
              aktLokace.vlozPredmet(raptorVejce);
              
+             setChanged();
+             notifyObservers();
              return "Hodil jsi maso raptorovi, nyni muzes sebrat klic a raptorVejce";
+          
             }
   
          if (aktLokace.getNazev().equals("jeskyne")&& batoh.nazvyPredmetu().contains("triceratopsMaso"))
@@ -78,6 +84,8 @@ public class PrikazHodMaso implements IPrikaz
              batoh.vyhodPredmet("triceratopsMaso");
              aktLokace.vlozPredmet(klic);
              aktLokace.vlozPredmet(raptorVejce);
+             setChanged();
+             notifyObservers();
              
              return "Hodil jsi maso raptorovi, nyni muzes sebrat klic a raptorVejce";
             }

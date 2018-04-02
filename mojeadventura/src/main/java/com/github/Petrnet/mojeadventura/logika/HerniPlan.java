@@ -2,6 +2,8 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package com.github.Petrnet.mojeadventura.logika;
 
+import java.util.Observable;
+
 /**
  * Class HerniPlan - třída představující mapu a stav adventury.
  * 
@@ -12,7 +14,7 @@ package com.github.Petrnet.mojeadventura.logika;
  * @author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Riha, Petr Netolicky
  * @version    LS 2016/2017
  */
-public class HerniPlan {
+public class HerniPlan extends Observable{
     
     private static final String NAZEV_PRO_LOKACE = "more";
     
@@ -40,15 +42,15 @@ public class HerniPlan {
      */
     private void zalozLokaceHry() {
         // vytvářejí se jednotlivé lokace
-        Lokace pristav = new Lokace("pristav","pristav, ve kterém hru zacinas");
-        Lokace breh = new Lokace("breh","zde se nachazi dodo");
-        Lokace jeskyne = new Lokace("jeskyne","staráaplesniva jeskyne ve ktere zije raptor");
-        Lokace more = new Lokace(NAZEV_PRO_LOKACE,"more ve kterem zije masosaurus, umres, jestli vejdes");
-        Lokace louka = new Lokace("louka","na louce naleznes triceratopse");
-        Lokace skaly = new Lokace("skaly","ve skalach naleznes pteranodona");
-        Lokace jurskyParkBudova = new Lokace("jurskyParkBudova","v budove naleznes mec a zamcenou truhlu");
-        Lokace laborator = new Lokace("laborator","zde naleznes inkubator pro vytvoreni vejce Indomina Rexe");
-        Lokace tRexDoupe = new Lokace("tRexovoDoupe","vstup na vlastni nebezpeci");
+        Lokace pristav = new Lokace("pristav","pristav, ve kterém hru zacinas",0,0);
+        Lokace breh = new Lokace("breh","zde se nachazi dodo",20,20);
+        Lokace jeskyne = new Lokace("jeskyne","staráaplesniva jeskyne ve ktere zije raptor",0,0);
+        Lokace more = new Lokace(NAZEV_PRO_LOKACE,"more ve kterem zije masosaurus, umres, jestli vejdes",0,0);
+        Lokace louka = new Lokace("louka","na louce naleznes triceratopse",0,0);
+        Lokace skaly = new Lokace("skaly","ve skalach naleznes pteranodona",0,0);
+        Lokace jurskyParkBudova = new Lokace("jurskyParkBudova","v budove naleznes mec a zamcenou truhlu",0,0);
+        Lokace laborator = new Lokace("laborator","zde naleznes inkubator pro vytvoreni vejce Indomina Rexe",0,0);
+        Lokace tRexDoupe = new Lokace("tRexovoDoupe","vstup na vlastni nebezpeci",0,0);
         
        
         // přiřazují se průchody mezi lokacemi (sousedící lokace)
@@ -135,6 +137,8 @@ public class HerniPlan {
      */
     public void setAktualniLokace(Lokace lokace) {
        aktualniLokace = lokace;
+       setChanged();
+       notifyObservers();
     }
     
     /**

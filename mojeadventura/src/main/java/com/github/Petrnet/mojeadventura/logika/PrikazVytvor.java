@@ -1,4 +1,7 @@
 package com.github.Petrnet.mojeadventura.logika;
+
+import java.util.Observable;
+
 /**
  * Třída PrikazVytvor implementuje pro hru příkaz vytvor.
  * Tato třída je součástí jednoduché textové hry.
@@ -9,7 +12,7 @@ package com.github.Petrnet.mojeadventura.logika;
 
 
 
-public class PrikazVytvor implements IPrikaz
+public class PrikazVytvor extends Observable implements IPrikaz
 {
     private static final String NAZEV = "vytvor";
     private HerniPlan hPlan;
@@ -65,7 +68,10 @@ public class PrikazVytvor implements IPrikaz
          }
         
          batoh.vlozPredmet(vejceIndomina);
+         setChanged();
+         notifyObservers();
          return "Sebral(a) jsi predmet " + vejceIndomina;
+        
     }
      
     if (batoh.nazvyPredmetu().contains("raptorVejce"))
