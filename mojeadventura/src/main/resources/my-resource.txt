@@ -1,0 +1,10 @@
+InputStream res =
+    Main.class.getResourceAsStream("/my-resource.txt");
+
+    BufferedReader reader =
+        new BufferedReader(new InputStreamReader(res));
+    String line = null;
+    while ((line = reader.readLine()) != null) {
+        System.out.println(line);
+    }
+    reader.close();

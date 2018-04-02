@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="765.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="com.github.Petrnet.mojeadventura.uiText.HomeController">
+<GridPane alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.Petrnet.mojeadventura.uiText.HomeController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="172.0" prefWidth="175.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="419.0" minWidth="10.0" prefWidth="419.0" />
@@ -38,10 +38,9 @@
                   <items>
                         <MenuItem fx:id="novahra" mnemonicParsing="false" onAction="#Hra" text="Nová hra" />
                     <MenuItem fx:id="konec" mnemonicParsing="false" onAction="#konecHry" text="Konec hry" />
+                        <MenuItem mnemonicParsing="false" onAction="#napoveda" text="Napoveda" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" onAction="#napoveda" text="Nápověda" />
-                <Menu mnemonicParsing="false" onAction="#informace" text="Informace" />
               </menus>
                <padding>
                   <Insets left="2.0" right="10.0" />

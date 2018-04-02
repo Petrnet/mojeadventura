@@ -2,6 +2,7 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package com.github.Petrnet.mojeadventura.logika;
 
+
 /**
  * Třída Hra - třída představující logiku adventury.
  * 
@@ -17,13 +18,14 @@ public class Hra implements IHra {
     private HerniPlan herniPlan;
     private boolean konecHry = false;
     private Dinosaurus dinosaurus;
+    private Batoh batoh; 
     
 
     /**
      * Vytváří hru a inicializuje místnosti (prostřednictvím třídy HerniPlan) a seznam platných příkazů.
      */
     public Hra() {
-        herniPlan = new HerniPlan();
+        herniPlan = new HerniPlan(); 
         platnePrikazy = new SeznamPrikazu();
         platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
         platnePrikazy.vlozPrikaz(new PrikazJdi(herniPlan));
@@ -36,8 +38,21 @@ public class Hra implements IHra {
         platnePrikazy.vlozPrikaz(new PrikazPoloz(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazBatoh(herniPlan));
     }
-    
-    
+   
+    public void novaHra() {
+        herniPlan = new HerniPlan(); 
+        platnePrikazy = new SeznamPrikazu();
+        platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
+        platnePrikazy.vlozPrikaz(new PrikazJdi(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazKonec(this));
+        platnePrikazy.vlozPrikaz(new PrikazVezmi(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazProzkoumej(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazZabij(herniPlan, dinosaurus));
+        platnePrikazy.vlozPrikaz(new PrikazVytvor(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazHodMaso(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazPoloz(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazBatoh(herniPlan));
+    }
     
 
     /**

@@ -43,14 +43,14 @@ public class HerniPlan extends Observable{
     private void zalozLokaceHry() {
         // vytvářejí se jednotlivé lokace
         Lokace pristav = new Lokace("pristav","pristav, ve kterém hru zacinas",0,0);
-        Lokace breh = new Lokace("breh","zde se nachazi dodo",20,20);
-        Lokace jeskyne = new Lokace("jeskyne","staráaplesniva jeskyne ve ktere zije raptor",0,0);
-        Lokace more = new Lokace(NAZEV_PRO_LOKACE,"more ve kterem zije masosaurus, umres, jestli vejdes",0,0);
-        Lokace louka = new Lokace("louka","na louce naleznes triceratopse",0,0);
-        Lokace skaly = new Lokace("skaly","ve skalach naleznes pteranodona",0,0);
-        Lokace jurskyParkBudova = new Lokace("jurskyParkBudova","v budove naleznes mec a zamcenou truhlu",0,0);
-        Lokace laborator = new Lokace("laborator","zde naleznes inkubator pro vytvoreni vejce Indomina Rexe",0,0);
-        Lokace tRexDoupe = new Lokace("tRexovoDoupe","vstup na vlastni nebezpeci",0,0);
+        Lokace breh = new Lokace("breh","zde se nachazi dodo",130,0);
+        Lokace jeskyne = new Lokace("jeskyne","staráaplesniva jeskyne ve ktere zije raptor",130,-60);
+        Lokace more = new Lokace(NAZEV_PRO_LOKACE,"more ve kterem zije masosaurus, umres, jestli vejdes",290,0);
+        Lokace louka = new Lokace("louka","na louce naleznes triceratopse",130,60);
+        Lokace skaly = new Lokace("skaly","ve skalach naleznes pteranodona",0,60);
+        Lokace jurskyParkBudova = new Lokace("jurskyParkBudova","v budove naleznes mec a zamcenou truhlu",290,60);
+        Lokace laborator = new Lokace("laborator","zde naleznes inkubator pro vytvoreni vejce Indomina Rexe",290,120);
+        Lokace tRexDoupe = new Lokace("tRexovoDoupe","vstup na vlastni nebezpeci",0,120);
         
        
         // přiřazují se průchody mezi lokacemi (sousedící lokace)

@@ -302,15 +302,29 @@ public class Lokace extends Observable{
          notifyObservers();
         return dinosauri.remove(nazevDinosaura);
     }
-    
+    /**
+     * Vrací kolekci Dinosaurů.
+     * Takto získaný seznam nelze upravovat.
+     * @return    nemodifikovatelná kolekce dinosaurů.
+     */
     public Collection<Dinosaurus> getDinosaury() {
     	return Collections.unmodifiableCollection(dinosauri.values());
     }
-
+    /**
+     * Vrací kolekci Předmětů.
+     * Takto získaný seznam nelze upravovat.
+     *
+     * @return    nemodifikovatelná kolekce předmětů.
+     */
 public Collection<Predmet> getPredmet() {
 	return Collections.unmodifiableCollection(predmety.values());
 }
-
+/**
+ * Následující čtyři metody slouží k pohybu na mapě. 
+ * Musíme získávat nastavovat polohu jednotlivých souřadnic. Obojí tedy pro X i Y
+ *
+ * @return    souřadnice X.
+ */
 public double getX() {
 	return x;
 }
@@ -326,7 +340,11 @@ public double getY() {
 public void setY(double y) {
 	this.y = y;
 }
-
+/**
+ * Důležité přepsat kvůli vypisování Lokace
+ *
+ * @return    souřadnice X.
+ */
 
 @Override
 public String toString() {

@@ -27,7 +27,8 @@ import javafx.stage.Stage;
  * Kontroler, který zprostředkovává komunikaci mezi grafikou
  * a logikou adventury
  * 
- * @Petr Netolický
+ * @author     Petr Netolický
+ * @version    LS 2017/2018
  *
  */
 public class HomeController extends GridPane implements Observer {
@@ -88,40 +89,42 @@ public class HomeController extends GridPane implements Observer {
 		hrac.setY(hra.getHerniPlan().getAktualniLokace().getY());
 		hra.getHerniPlan().addObserver(this);
 	}
-	
+	/**
+	 * Metoda pro zpracování konce hry
+	 */
 	
 		public void konecHry() {
 			Platform.exit();
 		}
-		
+		/**
+		 * Metoda pro zpracování nové hry
+		 */
 		public void Hra() {
 			seznamVychodu.getItems().clear();
 			seznamPredmetuLokace.getItems().clear();
 			seznamDinosauru.getItems().clear();
-			hra.Hra();
+			hra.novaHra();
 			this.inicializuj(hra);
 		}
-		
-		public void informace() {
-			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-	        alert.setTitle("Jurský park");
-	        alert.setHeaderText("Jurský park - skvělá hra");
-	        alert.setContentText("Petr Netolický, VŠE FIS");
-	        alert.showAndWait();
-		}
+		/**
+		 * Metoda pro zpracování nápověda
+		 */
 		
 		public void napoveda() {
 			Stage stage = new Stage();
 	        stage.setTitle("Nápověda k aplikaci");
 	        WebView webview = new WebView();
 	        webview.getEngine().load(
-	                getClass().getResource("./napoveda.html").toExternalForm()
+	                getClass().getResource("./Napoveda.html").toExternalForm()
 	        );
 	        stage.setScene(new Scene(webview, 500, 500));
 	        stage.show();
 		
 		}
 		
+		/**
+		 * Metoda slouží k aktualizaci souřadnic i změn v GUI
+		 */
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
