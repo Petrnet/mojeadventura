@@ -12,9 +12,9 @@ public class PrikazZabij extends Observable implements IPrikaz
 {
     private static final String NAZEV = "zabij";
     private HerniPlan hPlan;
-    Predmet triceratopsMaso = new Predmet("triceratopsMaso", "chutne velke maso");
-    Predmet dodoMaso = new Predmet("dodoMaso", "chutne male maso");
-    Predmet tRexVejce = new Predmet("tRexVejce", "velke vejce");
+    Predmet triceratopsMaso = new Predmet("triceratopsMaso", "chutne velke maso",true,true,"/com/github/Petrnet/mojeadventura/uiText/Triceratopsmaso.jpg");
+    Predmet dodoMaso = new Predmet("dodoMaso", "chutne male maso", true, true, "/com/github/Petrnet/mojeadventura/uiText/Triceratopsmaso.jpg");
+    Predmet tRexVejce = new Predmet("tRexVejce", "velke vejce", true, true, "/com/github/Petrnet/mojeadventura/uiText/Trexvejce.jpg");
     private Dinosaurus dinosaurus;
     
   

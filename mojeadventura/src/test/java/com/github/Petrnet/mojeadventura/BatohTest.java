@@ -49,8 +49,8 @@ public class BatohTest
     @Test
     public void testVlozPredmet()
     {
-        Predmet predmet1 = new Predmet("a", "popis a", true, true);
-        Predmet predmet2 = new Predmet("b", "popis b", false, true);
+        Predmet predmet1 = new Predmet("a", "popis a", true, true,"ano");
+        Predmet predmet2 = new Predmet("b", "popis b", false, true,"ano");
         Batoh batoh = new Batoh();
         assertTrue(batoh.vlozPredmet(predmet1));
         assertFalse(batoh.vlozPredmet(predmet2));
@@ -63,7 +63,7 @@ public class BatohTest
     @Test
     public void testVyhodPredmet()
     {
-        Predmet predmet1 = new Predmet("a", "popis a", true, true);
+        Predmet predmet1 = new Predmet("a", "popis a", true, true,"ano");
         Batoh batoh = new Batoh();
         batoh.vlozPredmet(predmet1);
         assertTrue(batoh.obsahujePredmet("a"));
@@ -79,13 +79,13 @@ public class BatohTest
     public void testOmezenostBatohu()
     {
         Batoh batoh = new Batoh();
-        Predmet predmet1 = new Predmet("a", "popis a", true, true);
-        Predmet predmet2 = new Predmet("b", "popis b", true, true);
-        Predmet predmet3 = new Predmet("c", "popis c", true, true);
-        Predmet predmet4 = new Predmet("d", "popis d", true, true);
-        Predmet predmet5 = new Predmet("e", "popis e", true, true);
-        Predmet predmet6 = new Predmet("f", "popis f", true, true);
-        Predmet predmet7 = new Predmet("f", "popis g", true, true);
+        Predmet predmet1 = new Predmet("a", "popis a", true, true,"ano");
+        Predmet predmet2 = new Predmet("b", "popis b", true, true,"ano");
+        Predmet predmet3 = new Predmet("c", "popis c", true, true,"ano");
+        Predmet predmet4 = new Predmet("d", "popis d", true, true,"ano");
+        Predmet predmet5 = new Predmet("e", "popis e", true, true,"ano");
+        Predmet predmet6 = new Predmet("f", "popis f", true, true,"ano");
+        Predmet predmet7 = new Predmet("f", "popis g", true, true,"ano");
         assertTrue(batoh.vlozPredmet(predmet1));
         assertTrue(batoh.vlozPredmet(predmet2));
         assertTrue(batoh.vlozPredmet(predmet3));

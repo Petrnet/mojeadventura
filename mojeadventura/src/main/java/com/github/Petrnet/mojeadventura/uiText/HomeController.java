@@ -1,5 +1,8 @@
 package com.github.Petrnet.mojeadventura.uiText;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -9,6 +12,8 @@ import com.github.Petrnet.mojeadventura.logika.Predmet;
 import com.github.Petrnet.mojeadventura.logika.Dinosaurus;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,10 +23,12 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+
 
 /**
  * Kontroler, který zprostředkovává komunikaci mezi grafikou
@@ -36,16 +43,18 @@ public class HomeController extends GridPane implements Observer {
 	@FXML private TextField vstupniText;
 	@FXML private TextArea vystup;
 	@FXML private Button odesli;
-	@FXML private ListView<Predmet> seznamPredmetuLokace;
 	@FXML private ListView<Lokace> seznamVychodu;
 	@FXML private ImageView hrac;
-	@FXML private ListView<Predmet> inventarBatoh;
 	@FXML private ListView<Dinosaurus> seznamDinosauru;
+	@FXML private ListView<ImageView> inventarBatoh;
+	@FXML private ListView<ImageView> seznamPredmetuLokace;
 	@FXML private ImageView mapa;
 	@FXML private MenuBar menu;
 	@FXML private MenuItem novahra;
 	@FXML private MenuItem konec;
 	private IHra hra;
+	private ObservableList<ImageView> observableList1;
+	private ObservableList<ImageView> observableList2;
 	
 	
 	/**
@@ -76,18 +85,21 @@ public class HomeController extends GridPane implements Observer {
 	public void inicializuj(IHra hra) {
 	
 		this.hra = hra;
+		List<ImageView> list1 = new ArrayList<ImageView>();
+		observableList2 = FXCollections.observableList(list1);
+		List<ImageView> list2 = new ArrayList<ImageView>();
+		observableList1 = FXCollections.observableList(list2);
 	  vystup.setText(hra.vratUvitani());
 		vystup.setEditable(false);
-		seznamPredmetuLokace.getItems().addAll(hra.getHerniPlan().getAktualniLokace().getPredmet());
 		seznamDinosauru.getItems().addAll(hra.getHerniPlan().getAktualniLokace().getDinosaury());
 		seznamVychodu.getItems().addAll(hra.getHerniPlan().getAktualniLokace().getVychody());
-		inventarBatoh.getItems().addAll(hra.getHerniPlan().getBatoh().getPredmetyBatoh());
-		hra.getHerniPlan().addObserver(this);
-		hra.getHerniPlan().getBatoh().addObserver(this);
+		upravLokaci();
+		upravInventar();
+	hra.getHerniPlan().addObserver(this);
+		hra.getBatoh().addObserver(this);
 		hra.getHerniPlan().getAktualniLokace().addObserver(this);
 		hrac.setX(hra.getHerniPlan().getAktualniLokace().getX());
 		hrac.setY(hra.getHerniPlan().getAktualniLokace().getY());
-		hra.getHerniPlan().addObserver(this);
 	}
 	/**
 	 * Metoda pro zpracování konce hry
@@ -105,6 +117,8 @@ public class HomeController extends GridPane implements Observer {
 			seznamDinosauru.getItems().clear();
 			hra.novaHra();
 			this.inicializuj(hra);
+			vystup.setDisable(false);
+			odesli.setDisable(false);
 		}
 		/**
 		 * Metoda pro zpracování nápověda
@@ -132,14 +146,48 @@ public class HomeController extends GridPane implements Observer {
 		seznamDinosauru.getItems().clear();
 		seznamPredmetuLokace.getItems().clear();
 		seznamVychodu.getItems().addAll(hra.getHerniPlan().getAktualniLokace().getVychody());
-		seznamPredmetuLokace.getItems().addAll(hra.getHerniPlan().getAktualniLokace().getPredmet());
 		seznamDinosauru.getItems().addAll(hra.getHerniPlan().getAktualniLokace().getDinosaury());
-		inventarBatoh.getItems().clear();
-		inventarBatoh.getItems().addAll(hra.getHerniPlan().getBatoh().getPredmetyBatoh());
+		upravLokaci();
+		upravInventar();
 		hra.getHerniPlan().getAktualniLokace().addObserver(this);
 		hrac.setX(hra.getHerniPlan().getAktualniLokace().getX());
 		hrac.setY(hra.getHerniPlan().getAktualniLokace().getY());
 		
+}
+	public void upravLokaci() {
+		observableList2.removeAll(observableList2);		
+		for (String nazev : hra.getHerniPlan().getAktualniLokace().getVsechnyPredmety().keySet()) {
+            	String URI = hra.getHerniPlan().getAktualniLokace().getPredmet(nazev).getOdkazObrazek();
+            	Image pic = new Image(getClass().getResourceAsStream(URI));
+            	ImageView image = new ImageView(pic);
+            	image.setId(nazev);
+            	observableList2.add(image);
+            }
+		seznamPredmetuLokace.setItems(observableList2);
+		
+	}
+	
+	public void upravInventar() {
+		observableList1.removeAll(observableList1);		
+		for (String nazev : hra.getBatoh().getSeznamPredmetu().keySet()) {
+        	String URI = hra.getBatoh().getPredmet(nazev).getOdkazObrazek();
+        	Image pic = new Image(getClass().getResourceAsStream(URI));
+        	ImageView image = new ImageView(pic);
+        	image.setId(nazev);
+        	observableList1.add(image);
+        	
+    
+		}
+		inventarBatoh.setItems(observableList1);
 	}
 
 }
+	
+	
+	
+	
+	
+	
+	
+	
+

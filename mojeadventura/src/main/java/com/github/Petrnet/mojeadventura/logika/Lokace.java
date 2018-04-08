@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 import com.github.Petrnet.mojeadventura.logika.Predmet;
 
+
 /**
  * Trida Lokace - popisuje jednotlivé lokace (místnosti) hry. Tato třída je
  * součástí jednoduché textové hry.
@@ -50,6 +51,7 @@ public class Lokace extends Observable{
         vychody = new HashSet<>();
         predmety = new HashMap<>();
         dinosauri = new HashMap<>();
+      
         this.x = x;
         this.y = y;
     }
@@ -251,8 +253,13 @@ public class Lokace extends Observable{
      * @returns    předmět, který byl odebrán z lokace
      */
     public Predmet vezmiPredmet(String nazevPredmetu)
+   
     {
-        return predmety.remove(nazevPredmetu);
+    	Predmet x = predmety.remove(nazevPredmetu);
+    	setChanged();
+        notifyObservers();
+        
+        return x;
     }
     
     /**
@@ -298,9 +305,8 @@ public class Lokace extends Observable{
      */
     public Dinosaurus odstranDinosaura(String nazevDinosaura)
     {
-    	 setChanged();
-         notifyObservers();
         return dinosauri.remove(nazevDinosaura);
+        
     }
     /**
      * Vrací kolekci Dinosaurů.
@@ -340,6 +346,17 @@ public double getY() {
 public void setY(double y) {
 	this.y = y;
 }
+
+public Map<String, Predmet> getVsechnyPredmety(){
+   	return predmety;
+   }
+
+
+public Predmet getPredmet(String nazevPredmetu) {
+    return predmety.get(nazevPredmetu);
+ } 
+
+
 /**
  * Důležité přepsat kvůli vypisování Lokace
  *
@@ -349,6 +366,8 @@ public void setY(double y) {
 @Override
 public String toString() {
 	return getNazev();
+	
+	
 	
 }
 }

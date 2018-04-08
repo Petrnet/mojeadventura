@@ -15,10 +15,10 @@ public class PrikazHodMaso extends Observable implements IPrikaz
 {
     private static final String NAZEV = "hodMaso";
     private HerniPlan hPlan;
-    Predmet klic = new Predmet("klic", "tento klic dokaze neco otevrit");
-    Predmet raptorVejce = new Predmet("raptorVejce", "mensi vejce");
-    Predmet triceratopsMaso = new Predmet("triceratopsMaso", "chutne velke maso");
-    Predmet dodoMaso = new Predmet("dodoMaso", "chutne male maso");
+    Predmet klic = new Predmet("klic", "tento klic dokaze neco otevrit",true, true,"/com/github/Petrnet/mojeadventura/uiText/klic.jpg");
+    Predmet raptorVejce = new Predmet("raptorVejce", "mensi vejce", true, true, "/com/github/Petrnet/mojeadventura/uiText/raptorvejce.jpg");
+    Predmet triceratopsMaso = new Predmet("triceratopsMaso", "chutne velke maso",true, true,"/com/github/Petrnet/mojeadventura/uiText/Triceratopsmaso.jpg");
+    Predmet dodoMaso = new Predmet("dodoMaso", "chutne male maso",true, true,"/com/github/Petrnet/mojeadventura/uiText/Dodomaso.jpg");
   
      /**
     * Konstruktor třídy
@@ -55,7 +55,7 @@ public class PrikazHodMaso extends Observable implements IPrikaz
          String nazevDinosaura = parametry[0];
          Lokace aktLokace = hPlan.getAktualniLokace();
          Batoh batoh = hPlan.getBatoh();
-         
+       
          
          if (!aktLokace.obsahujeDinosaura(nazevDinosaura))
         {

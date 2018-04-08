@@ -16,7 +16,7 @@ public class PrikazVytvor extends Observable implements IPrikaz
 {
     private static final String NAZEV = "vytvor";
     private HerniPlan hPlan;
-    Predmet vejceIndomina = new Predmet("vejceIndomina", "obrovske vejce");
+    Predmet vejceIndomina = new Predmet("vejceIndomina", "obrovske vejce",true,true,"/com/github/Petrnet/mojeadventura/uiText/Trexvejce.jpg");
   
      /**
     * Konstruktor třídy

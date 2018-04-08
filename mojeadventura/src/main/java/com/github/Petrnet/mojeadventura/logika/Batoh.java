@@ -4,6 +4,8 @@ import java.util.*;
 
 
 
+
+
 /**
  * Třída Batoh představuje batoh do kterého se mohou ukládat přenositelné předměty
  * 
@@ -136,6 +138,11 @@ public String nazvyPredmetu() {
         return nazvy;
  }
 
+/**
+ * Metoda, která zjistí, zda-li batoh obsahuje predmet
+ * @return vrátí buď true=je v batohu nebo false=není v batohu
+ */ 
+
  public boolean obsahujePredmety(Predmet predmet) {
         
         if (seznamPredmetu.containsKey(predmet))
@@ -144,9 +151,35 @@ public String nazvyPredmetu() {
         }
         return false;
  }
+ 
+ /**
+  * Metoda, která vrací hodnoty jednotlivých predmětů v kolekci
+  * @return hodnoty předmětů v kolekci
+  */ 
  public Collection<Predmet> getPredmetyBatoh() {
 		return Collections.unmodifiableCollection(seznamPredmetu.values());
 	}
+ 
+ /**
+  * Metoda, která vrací předměty
+  * @return vrácená hodnota p předmětů
+  */ 
+ public List<Predmet> getPredmety(){
+		
+		List<Predmet> p = new ArrayList<>();
+     for (Predmet predmet : seznamPredmetu.values()){
+     	p.add(predmet);
+     }	
+     return p;
+	}
+ 
+ /**
+  * Metoda, která vrací předměty
+  * @return vrácená hodnota předmětů
+  */ 
+ public Map<String, Predmet> getSeznamPredmetu(){
+	   	return seznamPredmetu;
+	   }
         
   
 @Override

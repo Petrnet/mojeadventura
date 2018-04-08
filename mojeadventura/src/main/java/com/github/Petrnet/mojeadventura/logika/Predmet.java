@@ -2,7 +2,11 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package com.github.Petrnet.mojeadventura.logika;
 
+import java.util.Collection;
 import java.util.Observable;
+
+
+
 
 /**
  * Třída Predmet představuje jednotlivé předměty (věci), které je možné
@@ -21,6 +25,7 @@ public class Predmet extends Observable
     private String popis;
     private boolean prenositelny;
     private boolean odemceny;
+    private String odkazObrazek;
 
     
     
@@ -33,13 +38,14 @@ public class Predmet extends Observable
      * @param    prenositelny   true, pokud má být předmět přenositelný; jinak false
      * @param    odemceny       true, pokud je předmět odemčený; jinak false
      */
-    public Predmet(String nazev, String popis, boolean prenositelny, boolean odemceny)
+    public Predmet(String nazev, String popis, boolean prenositelny, boolean odemceny, String odkazObrazek)
     {
         this.nazev = nazev;
         this.popis = popis;
         this.prenositelny = prenositelny;
         this.odemceny = odemceny;
-        
+        this.odkazObrazek=odkazObrazek;
+       
     }
 
     /**
@@ -48,10 +54,6 @@ public class Predmet extends Observable
      * @param    nazev    název předmětu (jedno slovo)
      * @param    popis    popis předmětu (může se jednat o text libovolné délky)
      */
-    public Predmet(String nazev, String popis)
-    {
-        this(nazev, popis, true, true);
-    }
     
     /**
      * Vrátí název předmětu.
@@ -120,11 +122,22 @@ public class Predmet extends Observable
         setChanged();
         notifyObservers();
     }
+    
+    public String getOdkazObrazek() {
+		return odkazObrazek;
+	}
+	
+	
 
     @Override
     public String toString()
     {
         return "Predmet: " + nazev;
     }
+   
+    
+
+
+    
 
 }

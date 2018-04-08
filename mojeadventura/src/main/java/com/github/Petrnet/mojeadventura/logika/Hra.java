@@ -26,6 +26,7 @@ public class Hra implements IHra {
      */
     public Hra() {
         herniPlan = new HerniPlan(); 
+        batoh= new Batoh();
         platnePrikazy = new SeznamPrikazu();
         platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
         platnePrikazy.vlozPrikaz(new PrikazJdi(herniPlan));
@@ -41,6 +42,7 @@ public class Hra implements IHra {
    
     public void novaHra() {
         herniPlan = new HerniPlan(); 
+        batoh= new Batoh();
         platnePrikazy = new SeznamPrikazu();
         platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
         platnePrikazy.vlozPrikaz(new PrikazJdi(herniPlan));
@@ -149,8 +151,15 @@ public class Hra implements IHra {
      public HerniPlan getHerniPlan(){
         return herniPlan;
      }
-
-
+     /**
+      * Metoda vrátí odkaz na batoh, je využita hlavně v testech,
+      * kde se jejím prostřednictvím získává aktualní batoh.
+      *  
+      * @return    odkaz na batoh
+      */
+     public Batoh getBatoh() {
+    	 return batoh;
+     }
 
 
 	@Override

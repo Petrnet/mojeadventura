@@ -63,8 +63,8 @@ public class LokaceTest
     public void testVeci()
     {
         Lokace lokace1 = new Lokace(null, null,0,0);
-        Predmet predmet1 = new Predmet("a", "popis a", true, true);
-        Predmet predmet2 = new Predmet("b", "popis b", false, true);
+        Predmet predmet1 = new Predmet("a", "popis a", true, true,"ano");
+        Predmet predmet2 = new Predmet("b", "popis b", false, true,"ano");
         lokace1.vlozPredmet(predmet1);
         lokace1.vlozPredmet(predmet2);
         assertTrue(lokace1.obsahujePredmet("a"));

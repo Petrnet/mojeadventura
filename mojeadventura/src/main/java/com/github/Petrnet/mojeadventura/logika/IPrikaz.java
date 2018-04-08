@@ -2,6 +2,8 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package com.github.Petrnet.mojeadventura.logika;
 
+
+
 /**
  * Třída implementující toto rozhraní bude ve hře zpracovávat jeden konkrétní příkaz.
  * Toto rozhraní je součástí jednoduché textové hry.
@@ -28,5 +30,7 @@ public interface IPrikaz {
      * @return    nazev prikazu
      */
 	public String getNazev();
+	
+
 	
 }

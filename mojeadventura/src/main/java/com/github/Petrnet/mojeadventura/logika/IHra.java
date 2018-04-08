@@ -2,6 +2,8 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package com.github.Petrnet.mojeadventura.logika;
 
+
+
 /**
  * Rozhraní které musí implementovat hra, je na ně navázáno uživatelské rozhraní
  *
@@ -52,5 +54,8 @@ public interface IHra
      * @return    odkaz na herní plán
      */
      public HerniPlan getHerniPlan();
+     public Batoh getBatoh();
+
+
 
 }
