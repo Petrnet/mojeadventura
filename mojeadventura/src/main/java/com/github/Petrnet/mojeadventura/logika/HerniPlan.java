@@ -80,7 +80,7 @@ public class HerniPlan extends Observable{
         Predmet mec = new Predmet("mec", "ostry mec",true,true,"/com/github/Petrnet/mojeadventura/uiText/mec.png");
         Predmet lod = new Predmet("lod", "stara lod, ktera te sem zavezla", false, true,"/com/github/Petrnet/mojeadventura/uiText/lod.jpg");
         Predmet puska = new Predmet("puska", "velmi uderna zbran", true, false,"/com/github/Petrnet/mojeadventura/uiText/puska.PNG");
-        Predmet inkubator = new Predmet ("inkubator", "pristroj na vytvareni vajec", false, true,"/com/github/Petrnet/mojeadventura/uiText/ninja.jpg");
+        Predmet inkubator = new Predmet ("inkubator", "pristroj na vytvareni vajec", false, true,"/com/github/Petrnet/mojeadventura/uiText/incubator.jpg");
         Predmet triceratopsMaso = new Predmet("triceratopsMaso", "chutne velke maso",true,true,"/com/github/Petrnet/mojeadventura/uiText/Triceratopsmaso.jpg");
         Predmet dodoMaso = new Predmet("dodoMaso", "chutne male maso",true,true,"/com/github/Petrnet/mojeadventura/uiText/Dodomaso.jpg");
         Predmet tRexVejce = new Predmet("tRexVejce", "velke vejce",true,true,"/com/github/Petrnet/mojeadventura/uiText/Trexvejce.jpg");

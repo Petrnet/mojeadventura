@@ -115,9 +115,11 @@ public class HomeController extends GridPane implements Observer {
 			seznamVychodu.getItems().clear();
 			seznamPredmetuLokace.getItems().clear();
 			seznamDinosauru.getItems().clear();
+			inventarBatoh.getItems().clear();
 			hra.novaHra();
 			this.inicializuj(hra);
 			vystup.setDisable(false);
+			vstupniText.setDisable(false);
 			odesli.setDisable(false);
 		}
 		/**
@@ -150,6 +152,9 @@ public class HomeController extends GridPane implements Observer {
 		upravLokaci();
 		upravInventar();
 		hra.getHerniPlan().getAktualniLokace().addObserver(this);
+		hra.getHerniPlan().addObserver(this);
+		hra.getHerniPlan().getBatoh().addObserver(this);
+		hra.getHerniPlan().getAktualniLokace().addObserver(this);
 		hrac.setX(hra.getHerniPlan().getAktualniLokace().getX());
 		hrac.setY(hra.getHerniPlan().getAktualniLokace().getY());
 		
@@ -169,13 +174,12 @@ public class HomeController extends GridPane implements Observer {
 	
 	public void upravInventar() {
 		observableList1.removeAll(observableList1);		
-		for (String nazev : hra.getBatoh().getSeznamPredmetu().keySet()) {
-        	String URI = hra.getBatoh().getPredmet(nazev).getOdkazObrazek();
+		for (String nazev : hra.getHerniPlan().getBatoh().getSeznamPredmetu().keySet()) {
+        	String URI = hra.getHerniPlan().getBatoh().getPredmet(nazev).getOdkazObrazek();
         	Image pic = new Image(getClass().getResourceAsStream(URI));
         	ImageView image = new ImageView(pic);
         	image.setId(nazev);
-        	observableList1.add(image);
-        	
+        	observableList1.add(image);	
     
 		}
 		inventarBatoh.setItems(observableList1);

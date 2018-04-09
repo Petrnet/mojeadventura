@@ -233,6 +233,8 @@ public class Lokace extends Observable{
     public void vlozPredmet(Predmet predmet)
     {
         predmety.put(predmet.getNazev(), predmet);
+        setChanged();
+        notifyObservers();
     }
     /**
      * Přidá předmět do lokace.
@@ -243,6 +245,8 @@ public class Lokace extends Observable{
     public void vlozDinosaur(Dinosaurus dinosaurus)
     {
         dinosauri.put(dinosaurus.getNazev(), dinosaurus);
+        setChanged();
+        notifyObservers();
     }
 
     /**
@@ -305,7 +309,13 @@ public class Lokace extends Observable{
      */
     public Dinosaurus odstranDinosaura(String nazevDinosaura)
     {
-        return dinosauri.remove(nazevDinosaura);
+    	
+    	Dinosaurus y = dinosauri.remove(nazevDinosaura);
+    	setChanged();
+        notifyObservers();
+        
+        return y;
+         
         
     }
     /**

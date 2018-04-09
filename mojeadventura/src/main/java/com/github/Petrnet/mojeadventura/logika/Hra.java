@@ -3,6 +3,7 @@
 package com.github.Petrnet.mojeadventura.logika;
 
 
+
 /**
  * Třída Hra - třída představující logiku adventury.
  * 
@@ -25,6 +26,7 @@ public class Hra implements IHra {
      * Vytváří hru a inicializuje místnosti (prostřednictvím třídy HerniPlan) a seznam platných příkazů.
      */
     public Hra() {
+    	konecHry = false;
         herniPlan = new HerniPlan(); 
         batoh= new Batoh();
         platnePrikazy = new SeznamPrikazu();
@@ -38,9 +40,11 @@ public class Hra implements IHra {
         platnePrikazy.vlozPrikaz(new PrikazHodMaso(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazPoloz(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazBatoh(herniPlan));
+      
     }
    
     public void novaHra() {
+    	konecHry = false;
         herniPlan = new HerniPlan(); 
         batoh= new Batoh();
         platnePrikazy = new SeznamPrikazu();

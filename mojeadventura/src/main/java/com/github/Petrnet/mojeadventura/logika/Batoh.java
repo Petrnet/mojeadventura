@@ -6,6 +6,7 @@ import java.util.*;
 
 
 
+
 /**
  * Třída Batoh představuje batoh do kterého se mohou ukládat přenositelné předměty
  * 
@@ -20,6 +21,7 @@ public class Batoh extends Observable
 
 private Map<String,Predmet> seznamPredmetu;
 private int Velikost = 6;  
+
 
  
     /**
@@ -94,7 +96,7 @@ public boolean jeVolno()
      * @param  nejakyPredmet, Předmět, který chceme vložit
      * @return   true, pokud je v předmět v batohu; jinak false
      */ 
-    
+
   public boolean vlozPredmet(Predmet nejakyPredmet)
   {
       if (jeVolno() && nejakyPredmet.isPrenositelny()){
@@ -135,6 +137,8 @@ public String nazvyPredmetu() {
         for (String nazevPredmetu : seznamPredmetu.keySet()){
             nazvy += nazevPredmetu + " ";
         }
+        setChanged();
+        notifyObservers();
         return nazvy;
  }
 
@@ -156,30 +160,21 @@ public String nazvyPredmetu() {
   * Metoda, která vrací hodnoty jednotlivých predmětů v kolekci
   * @return hodnoty předmětů v kolekci
   */ 
- public Collection<Predmet> getPredmetyBatoh() {
-		return Collections.unmodifiableCollection(seznamPredmetu.values());
-	}
+
  
  /**
   * Metoda, která vrací předměty
   * @return vrácená hodnota p předmětů
   */ 
- public List<Predmet> getPredmety(){
-		
-		List<Predmet> p = new ArrayList<>();
-     for (Predmet predmet : seznamPredmetu.values()){
-     	p.add(predmet);
-     }	
-     return p;
-	}
+ public Map<String, Predmet> getSeznamPredmetu(){
+	   	return seznamPredmetu;
+	   }
  
  /**
   * Metoda, která vrací předměty
   * @return vrácená hodnota předmětů
   */ 
- public Map<String, Predmet> getSeznamPredmetu(){
-	   	return seznamPredmetu;
-	   }
+
         
   
 @Override
