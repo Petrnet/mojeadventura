@@ -157,7 +157,10 @@ public class HomeController extends GridPane implements Observer {
 		hra.getHerniPlan().getAktualniLokace().addObserver(this);
 		hrac.setX(hra.getHerniPlan().getAktualniLokace().getX());
 		hrac.setY(hra.getHerniPlan().getAktualniLokace().getY());
-		
+		/**
+		 * Metoda slouží k obrázkové úpravě lokace
+		 * 
+		 */
 }
 	public void upravLokaci() {
 		observableList2.removeAll(observableList2);		
@@ -169,7 +172,10 @@ public class HomeController extends GridPane implements Observer {
             	observableList2.add(image);
             }
 		seznamPredmetuLokace.setItems(observableList2);
-		
+		/**
+		 * Metoda slouží k obrázkové úpravě iventáře
+		 * 
+		 */
 	}
 	
 	public void upravInventar() {
